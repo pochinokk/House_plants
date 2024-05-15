@@ -21,6 +21,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class RegistrationController {
     @Autowired
     private CustomerService customerService;
+    /**
+     * Метод регистрирующий нового пользователя
+     * @param model объект Model, содержащий атрибуты для рендеринга представления
+     * @param username имя пользователя
+     * @param password пароль пользователя
+     * @param tel телефон пользователя
+     * @param address адрес пользователя
+     * @param redirectAttributes объект, сохраняющий сообщение для пользователя при переходе
+     * @return имя представления для страницы регистрации
+     */
     @PostMapping("/register")
     public String register(@RequestParam("username") String username,
                            @RequestParam("password") String password,
@@ -40,7 +50,11 @@ public class RegistrationController {
         redirectAttributes.addFlashAttribute("mes", "Вы успешно зарегистрировались");
         return "redirect:/authentication";
     }
-
+    /**
+     * Метод получения страницы регистрации
+     * @param model объект Model, содержащий атрибуты для рендеринга представления
+     * @return имя представления для страницы регистрации
+     */
     @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

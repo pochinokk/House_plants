@@ -23,6 +23,12 @@ public class OrderService {
     private final CustomerRepository customerRepository;
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
+    /**
+     * Метод создания заказа в таблице
+     * @param amount сумма заказа
+     * @param product_set набор растений
+     * @param customer_id ID пользователя
+     */
     public void create(String amount, String product_set, Long customer_id) {
         Customer customer = customerRepository.findById(customer_id)
                 .orElseThrow(() -> new RuntimeException("Пользователь не найден"));
@@ -33,6 +39,11 @@ public class OrderService {
                 .build();
         orderRepository.save(order);
     }
+    /**
+     * Метод проверки существования заказа
+     * @param id ID заказа
+     * @return иситина или ложь
+     */
     public boolean exists(Long id) {
         List<Order> orders = orderRepository.findAll();
         for (Order order : orders){
@@ -43,7 +54,11 @@ public class OrderService {
         return false;
     }
 
-
+    /**
+     * Метод получения суммы заказа по набору растений
+     * @param str набор растений
+     * @return сумма заказа
+     */
     public String getOrderAmount(String str) {
         int amount = 0;
         List<List<String>> order_list = new ArrayList<>();
@@ -80,10 +95,18 @@ public class OrderService {
         }
         return Integer.toString(amount);
     }
+    /**
+     * Метод получения всех заказов
+     * @return список всех заказов
+     */
     public List<Order> readAll() {
         return orderRepository.findAll();
     }
-
+    /**
+     * Метод получения всех заказов определенного пользователя по его ID
+     * @param id ID пользователя
+     * @return список заказов пользователя
+     */
     public List<Order> readAllByUserId(Long id) {
         List<Order> orders = orderRepository.findAll();
         List<Order> filtered_orders = new ArrayList<>();
@@ -96,7 +119,11 @@ public class OrderService {
         }
         return filtered_orders;
     }
-
+    /**
+     * Метод получения заказа по ID
+     * @param order_id объект, содержащий номер заказа
+     * @return заказ
+     */
     public Order getOrderByID(Long order_id){
         List<Order> orders = orderRepository.findAll();
         for (Order order : orders){
@@ -106,6 +133,9 @@ public class OrderService {
         }
         return null;
     }
-
+    /**
+     * Метод удаления заказа по ID
+     * @param id ID заказа
+     */
     public void delete(Long id) {orderRepository.deleteById(id);}
 }

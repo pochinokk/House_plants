@@ -29,22 +29,38 @@ public class PostmanController {
     private CustomerService customerService;
     private OrderService orderService;
     private ProductService productService;
+    /**
+     * Метод получения всех пользователей в формате JSON
+     * @return все пользователи
+     */
     @GetMapping(path = "/get_customers")
     public ResponseEntity<List<Customer>> getCustomers() {
         List<Customer> customers = customerService.readAll();
         return ResponseEntity.status(HttpStatus.OK).body(customers);
     }
+    /**
+     * Метод получения всех заказов в формате JSON
+     * @return все заказы
+     */
     @GetMapping(path = "/get_orders")
     public ResponseEntity<List<Order>> getOrders() {
         List<Order> orders = orderService.readAll();
         return ResponseEntity.status(HttpStatus.OK).body(orders);
     }
+    /**
+     * Метод получения всех позиций в формате JSON
+     * @return все позиции
+     */
     @GetMapping(path = "/get_positions")
     public ResponseEntity<List<Product>> getPostions() {
         List<Product> positions = productService.readAll();
         return ResponseEntity.status(HttpStatus.OK).body(positions);
     }
-
+    /**
+     * Метод добавления пользователя в формате JSON
+     * @param customer новый пользователь
+     * @return сообщение
+     */
     @PostMapping(path = "/add_customer")
     public ResponseEntity<String> createCustomer(@RequestBody Customer customer) {
         try {
@@ -58,6 +74,11 @@ public class PostmanController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+    /**
+     * Метод добавления заказа в формате JSON
+     * @param orderAndUsername пара из заказа и пользователя, который заказывает
+     * @return сообщение
+     */
     @PostMapping(path = "/add_order")
     public ResponseEntity<String> createOrder(@RequestBody List<Object> orderAndUsername) {
         try {
@@ -75,23 +96,17 @@ public class PostmanController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+    /**
+     * Метод добавления позиции в формате JSON
+     * @param product новая позиция
+     * @return сообщение
+     */
     @PostMapping(path = "/add_position")
     public ResponseEntity<String> createPosition(@RequestBody Product product) {
         try {
             productService.create(product.getName(),
                     product.getPrice());
             return ResponseEntity.status(HttpStatus.CREATED).body("Позиция успешно создана");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-    }
-
-    @PostMapping(path = "/change_password")
-    public ResponseEntity<String> change_password(@RequestBody String username_and_password) {
-        try {
-            String[] parts = username_and_password.split(" ");
-            customerService.changePassword(parts[0], parts[1]);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Пароль изменен");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

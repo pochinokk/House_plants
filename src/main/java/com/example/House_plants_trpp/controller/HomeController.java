@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class HomeController {
+    /**
+     * Метод получения главной страницы
+     * @param model объект Model, содержащий атрибуты для рендеринга представления
+     * @return имя представления для главной страницы
+     */
     @GetMapping("/")
     public String main(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -21,6 +26,11 @@ public class HomeController {
         model.addAttribute("username", username);
         return "index";
     }
+    /**
+     * Метод получения главной страницы
+     * @param model объект Model, содержащий атрибуты для рендеринга представления
+     * @return имя представления для главной страницы
+     */
     @GetMapping("/home")
     public String home(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AboutUsController {
     /**
      * Метод получения страницы контактной информации
+     * @param model объект Model, содержащий атрибуты для рендеринга представления
+     * @return имя представления для страницы "О нас"
      */
     @GetMapping("/about_us")
     public String about_us(Model model) {

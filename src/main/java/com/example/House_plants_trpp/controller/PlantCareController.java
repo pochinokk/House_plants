@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class PlantCareController {
+    /**
+     * Метод получения страницы с советами по уходу за растениями
+     * @param model объект Model, содержащий атрибуты для рендеринга представления
+     * @return имя представления для страницы с советами по уходу за растениями
+     */
     @GetMapping("/plant_care")
     public String plant_care(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

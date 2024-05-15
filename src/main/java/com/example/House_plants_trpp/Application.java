@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class Application {
-
+	/**
+	 * Метод запуска приложения
+	 *  @param args объект, содержащий входные аргументы приложения
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}

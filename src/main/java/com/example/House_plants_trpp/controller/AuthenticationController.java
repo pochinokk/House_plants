@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class AuthenticationController {
+    /**
+     * Метод получения страницы авторизации
+     * @param model объект Model, содержащий атрибуты для рендеринга представления
+     * @return имя представления для страницы авторизации
+     */
     @GetMapping("/authentication")
     public String authentication(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

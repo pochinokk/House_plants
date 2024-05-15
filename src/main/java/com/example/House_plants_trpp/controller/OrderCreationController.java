@@ -30,6 +30,13 @@ public class OrderCreationController {
     private ProductService productService;
     @Autowired
     private OrderService orderService;
+    /**
+     * Метод получения страницы создания заказа
+     * @param model объект Model, содержащий атрибуты для рендеринга представления
+     * @param sort_type тип сортировки
+     * @param session объект, необходимы для получения имени текущего пользователя
+     * @return имя представления для страницы создания заказа
+     */
     @GetMapping("/order_creation")
     public String positions(@RequestParam(value = "sort_type", required = false) String sort_type,
                             Model model, HttpSession session) {
@@ -60,7 +67,13 @@ public class OrderCreationController {
         return "order_creation_page";
     }
 
-
+    /**
+     * Метод сохрнания заказа пользователя
+     * @param model объект Model, содержащий атрибуты для рендеринга представления
+     * @param str объект, содержащий набор продуктов
+     * @param redirectAttributes объект, сохраняющий сообщение для пользователя при переходе
+     * @return имя представления для страницы создания заказа
+     */
     @PostMapping("/save_order")
     public String createOrder(@RequestParam String str, Model model, RedirectAttributes redirectAttributes) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

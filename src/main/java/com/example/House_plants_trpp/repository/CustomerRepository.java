@@ -11,5 +11,10 @@ import java.util.Optional;
  */
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    /**
+     * Метод поиска пользователя по имени
+     * @param username имя пользователя
+     * @return пользователь
+     */
     Optional<Customer> findByName(String username);
 }

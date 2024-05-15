@@ -1,4 +1,4 @@
-package com.example.House_plants_trpp_github.controller;
+package com.example.House_plants_trpp.controller;
 
 import com.example.House_plants_trpp.entity.Customer;
 import com.example.House_plants_trpp.entity.Order;
@@ -29,6 +29,9 @@ public class AccountController {
     private CustomerService customerService;
     /**
      * Метод получения страницы личного кабинета
+     *  @param model объект Model, содержащий атрибуты для рендеринга представления
+     *  @param session объект, необходимы для получения имени текущего пользователя
+     *  @return имя представления для страницы "Личный кабинет"
      */
     @GetMapping("/account")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
@@ -54,6 +57,11 @@ public class AccountController {
     }
     /**
      * Метод сохранения заказа администратором
+     *  @param model объект Model, содержащий атрибуты для рендеринга представления
+     *  @param str объект, содержащий набор продуктов
+     *  @param username объект, имя текущего пользователя
+     *  @param redirectAttributes объект, сохраняющий сообщение для пользователя при переходе
+     *  @return имя представления для страницы "Личный кабинет"
      */
     @PostMapping("/save_admin_order")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -85,6 +93,10 @@ public class AccountController {
     }
     /**
      * Метод удаления заказа администратором
+     *  @param model объект Model, содержащий атрибуты для рендеринга представления
+     *  @param order_id объект, содержащий номер заказа
+     *  @param redirectAttributes объект, сохраняющий сообщение для пользователя при переходе
+     *  @return имя представления для страницы "Личный кабинет"
      */
     @PostMapping("/delete_order")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -102,6 +114,9 @@ public class AccountController {
     }
     /**
      * Метод поиска всех пользователей
+     *  @param model объект Model, содержащий атрибуты для рендеринга представления
+     *  @param redirectAttributes объект, сохраняющий сообщение для пользователя при переходе
+     *  @return имя представления для страницы "Личный кабинет"
      */
     @GetMapping("/find_customers")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -116,6 +131,10 @@ public class AccountController {
 
     /**
      * Метод поиска заказа администратором
+     *  @param order_id объект, содержащий номер заказа
+     *  @param model объект Model, содержащий атрибуты для рендеринга представления
+     *  @param redirectAttributes объект, сохраняющий сообщение для пользователя при переходе
+     *  @return имя представления для страницы "Личный кабинет"
      */
     @GetMapping("/find_order_by_ID")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -131,7 +150,13 @@ public class AccountController {
             return "redirect:/account";
         }
     }
-
+    /**
+     * Метод поиска всех заказов пользователя
+     *  @param username объект, имя текущего пользователя
+     *  @param model объект Model, содержащий атрибуты для рендеринга представления
+     *  @param redirectAttributes объект, сохраняющий сообщение для пользователя при переходе
+     *  @return имя представления для страницы "Личный кабинет"
+     */
     @GetMapping("/find_customer_orders")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String find_customer_orders(@RequestParam("username") String username,

@@ -17,6 +17,12 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+    /**
+     * Метод создания позиции в таблице
+     * @param name название позиции
+     * @param price цена
+     * @return позиция
+     */
     public Product create(String name, String price) {
         Product product = Product.builder()
                 .name(name)
@@ -24,14 +30,26 @@ public class ProductService {
                 .build();
         return productRepository.save(product);
     }
+    /**
+     * Метод получения всех позиций из таблицы, отсортированных по имени по алфавиту
+     * @return список отсортированных позиций
+     */
     public Iterable<Product> readAllSortedByName() {
         return productRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
+    /**
+     * Метод получения всех позиций из таблицы, отсортированных по возрастанию цены
+     * @return список отсортированных позиций
+     */
     public Iterable<Product> readAllSortedByPriceAscending() {
         List<Product> positions = productRepository.findAll();
         positions.sort(Comparator.comparingDouble(product -> Double.parseDouble(product.getPrice())));
         return positions;
     }
+    /**
+     * Метод получения всех позиций из таблицы, отсортированных по убыванию цены
+     * @return список отсортированных позиций
+     */
     public Iterable<Product> readAllSortedByPriceDescending() {
         List<Product> positions = productRepository.findAll();
         Comparator<Product> priceComparator = Comparator.comparingDouble(product -> Double.
@@ -39,9 +57,17 @@ public class ProductService {
         Collections.sort(positions, priceComparator.reversed());
         return positions;
     }
+    /**
+     * Метод получения всех позиций из таблицы
+     * @return список позиций
+     */
     public List<Product> readAll() {
         return productRepository.findAll();
     }
+    /**
+     * Метод удаления позиции из таблицы
+     * @param id ID позиции
+     */
     public void delete(Long id) {
         productRepository.deleteById(id);
     }

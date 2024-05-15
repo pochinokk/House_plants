@@ -16,10 +16,13 @@ import java.util.stream.Collectors;
  */
 @AllArgsConstructor
 public class CustomerDetails implements UserDetails {
-
+    /**
+     * Поле содержащее пользователя
+     */
     private Customer customer;
     /**
      * Метод получения ID пользователя
+     * @return ID пользователя
      */
     public Long getId() {
         return customer.getId();

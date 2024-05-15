@@ -24,13 +24,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
     /**
      * Метод создания сервиса для работы с правами доступа пользователя
+     * @return сервис для работы с правами доступа пользователя
      */
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomerDetailsService();
     }
     /**
-     * Метод конфигурации цепочки фильтров безопасности для приложения.
+     * Метод конфигурации цепочки фильтров безопасности для приложения
+     * @param http запрос
+     * @return цепочка фильтров безопасности для приложения
+     * @throws Exception если возникает ошибка при конфигурации безопасности
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -52,7 +56,8 @@ public class SecurityConfig {
                 .build();
     }
     /**
-     * Метод определения и настройки провайдера аутентификации для приложения.
+     * Метод определения и настройки провайдера аутентификации для приложения
+     * @return провайдер аутентификации
      */
     @Bean
     public AuthenticationProvider authenticationProvider() {
@@ -63,6 +68,7 @@ public class SecurityConfig {
     }
     /**
      * Метод подключения хеширования пароля
+     * @return кодировщий пароля
      */
     @Bean
     public PasswordEncoder passwordEncoder() {

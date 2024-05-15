@@ -19,7 +19,9 @@ import java.util.Optional;
 public class CustomerDetailsService implements UserDetailsService {
     @Autowired
     private CustomerRepository repository;
-
+    /**
+     * Метод поиска пользователя по имени
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Customer> customer = repository.findByName(username);
