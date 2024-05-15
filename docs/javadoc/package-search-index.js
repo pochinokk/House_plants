@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.House_plants_trpp"},{"l":"com.example.House_plants_trpp.config"},{"l":"com.example.House_plants_trpp.controller"},{"l":"com.example.House_plants_trpp.entity"},{"l":"com.example.House_plants_trpp.repository"},{"l":"com.example.House_plants_trpp.service"}];updateSearchResults();
