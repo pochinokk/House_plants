@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+        <title>House plants</title>
+        <link rel="icon" href="/images/icons/favicon.ico" sizes = "any">
+        <link rel="stylesheet" href="/css/admin_style.css">
+        <link rel="stylesheet" href="/css/header_style.css">
+        <link rel="stylesheet" href="/css/footer_style.css">
+        <script src = "/js/burger.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <a href="/home">
+                <img class = "header_logo" src="/images/icons/logo512.png" alt="Логотип" title="Логотип" width = "64" height="64">
+            </a>
+            <label class="header_name">House plants</label>
+
+            <ul class = "header_links">
+                <li ><a href="/home" >Главная</a></li>
+                <li ><a href="/authentication" >Войти</a></li>
+                <li ><a href="/catalog">Каталог</a></li>
+                <li ><a href="/order_creation">Сделать заказ</a></li>
+                <li ><a class = "current" href="/account">Личный кабинет</a></li>
+                <li ><a href="/plant_care">О растениях</a></li>
+                <li ><a href="/about_us">О нас</a></li>
+                <li ><a id="user_name"th:text="${username}"></a></li>
+            </ul>
+            <div class = "burger-background"></div>
+            <div class = "navbar">
+                
+                    <div class = "burger-menu">
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                        <div class="line line-3"></div>
+                    </div> 
+
+
+            <ul class = "nav-list">
+                <div class = "space_for_x"></div>
+                <li id="burger_user_name"><p th:text="${username}"></p></li>
+                <li class="nav-item"><a href="/home" class = "nav-link">Главная</a></li>
+                <li class="nav-item"><a href="/authentication" class = "nav-link">Войти</a></li>
+                <li class="nav-item"><a href="/catalog" class = "nav-link">Каталог</a></li>
+                <li class="nav-item"><a href="/order_creation" class = "nav-link">Сделать заказ</a></li>
+                <li class="nav-item"><a href="/account" class = "nav-link">Личный кабинет</a></li>
+                <li class="nav-item"><a href="/plant_care" class = "nav-link">О растениях</a></li>
+                <li class="nav-item"><a href="/about_us" class = "nav-link">О нас</a></li>
+            </ul>
+
+            </div>
+
+
+            
+        </header>
+    <main>
+        <div th:if="${mes != null}" id="successful_order">
+            <p th:text="${mes}"></p>
+        </div>
+        <div th:if="${er != null}" id="server_error" >
+            <p th:text="${er}"></p>
+        </div>
+        <!-- Выход -->
+        <form id="account_info" class="text_and_btn" action="/logout" method="post">
+            <p th:text="'Администратор: ' + ${username}"></p>
+            <button id="logout_btn" type="submit">Выйти</button>
+        </form>
+
+        <!-- Добавление -->
+        <form id="save_frm" action="/save_admin_order" method="post">
+            <div class="text_and_btn">
+                <p>Добавить заказ</p>
+                <button id="save_btn" type="submit">Добавить</button>
+            </div>
+            <div class="inputbox">
+                <input type="text" name="username" required placeholder="Имя пользователя">
+            </div>
+            <div class="inputbox" >
+                <input id="product_set_input" type="text" name="str" required placeholder="Растения">
+            </div>
+        </form>
+
+
+        <!-- Удаление -->
+        <form id="delete_frm" action="/delete_order" method="post">
+            <div class="text_and_btn">
+                <p>Удалить заказ по его ID</p>
+                <button id="delete_btn" type="submit">Удалить</button> 
+            </div>
+
+            <div class="inputbox">
+                <input type="text" name="id" required placeholder="ID">
+            </div>
+        </form>
+
+
+        <!-- Поиск всех пользователей -->
+        <form id="find_customers_frm" action="/find_customers" method="get">
+            <div class="text_and_btn">
+                <p>Найти всех пользователей</p>
+                <button id="find_customers_btn" type="submit">Найти</button>
+            </div>
+            <div id="customer_list">
+                <div th:each="cust : ${customers}" class="customer">
+                <p>
+                    <strong th:text="'ID пользователя: '"></strong>
+                    <span th:text="${cust.id}"></span>
+                </p>
+                <p>
+                    <strong th:text="'Имя пользователя: '"></strong>
+                    <span th:text="${cust.name}"></span>
+                </p>
+                <p>
+                    <strong th:text="'Пароль: '"></strong>
+                    <span th:text="${cust.password}"></span>
+                </p>
+                <p>
+                    <strong th:text="'Роль: '"></strong>
+                    <span th:text="${cust.roles}"></span>
+                </p>
+                <p>
+                    <strong th:text="'Телефон: '"></strong>
+                    <span th:text="${cust.tel}"></span>
+                </p>
+                <p>
+                    <strong th:text="'Адрес: '"></strong>
+                    <span th:text="${cust.address}"></span>
+                </p>
+                </div>
+            </div>
+        </form>
+
+
+        <!-- Поиск заказа его по ID -->
+        <form id="find_by_ID_frm" action="/find_order_by_ID" method="get">
+            <div class="text_and_btn">
+                <p>Найти заказ по его ID</p>
+                <button id="find_by_ID_btn" type="submit">Найти</button>
+            </div>
+            <div class="inputbox">
+                <input type="text" name="id" required placeholder="ID">
+            </div>
+            <div class="order" th:if="${order != null}">
+                <p>
+                    <strong th:text="'ID заказа: '"></strong>
+                    <span th:text="${order.id}"></span>
+                </p>
+                <p>
+                    <strong th:text="'Сумма заказа: '"></strong>
+                    <span th:text="${order.amount} + '₽'"></span>
+                </p>
+                <p>
+                    <strong th:text="'Товары: '"></strong>
+                    <span th:text="${order.product_set}"></span>
+                </p>
+                </div>
+        </form>
+
+
+        <!-- Поиск всех заказов пользователя -->
+        <form id="find_orders_frm" action="/find_customer_orders" method="get">
+            <div class="text_and_btn">
+                <p>Найти заказы пользователя</p>
+                <button id="find_orders_btn" type="submit">Найти</button>
+            </div>
+            <div class="inputbox">
+                <input type="text" name="username" required placeholder="Имя пользователя">
+            </div>
+
+            <div id="order_list">
+                <div th:each="ord : ${orders}" class="order">
+                <p>
+                    <strong th:text="'ID заказа: '"></strong>
+                    <span th:text="${ord.id}"></span>
+                </p>
+                <p>
+                    <strong th:text="'Сумма заказа: '"></strong>
+                    <span th:text="${ord.amount} + '₽'"></span>
+                </p>
+                <p>
+                    <strong th:text="'Товары: '"></strong>
+                    <span th:text="${ord.product_set}"></span>
+                </p>
+                </div>
+            </div>
+        </form>
+
+
+        
+    </main>
+    <footer class = "footer_wrapper">
+        <div class="box box1">
+            <u>О нас</u>
+            <p class="author_name">Автор: Иванов Д.О.,</p>
+            <p>студент группы ИКБО-30-22</p>
+        </div>
+        <div class="box box2">
+            <u>Ссылки</u>
+            <p><a href="/catalog">Растения</a></p>
+            <p><a href="/plant_care">Советы</a></p>
+        </div>
+</footer>
+</body>
+</html>

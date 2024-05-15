@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+        <title>House plants</title>
+        <link rel="icon" href="/images/icons/favicon.ico" sizes = "any">
+        <link rel="stylesheet" href="/css/order_creation_style.css">
+        <link rel="stylesheet" href="/css/header_style.css">
+        <link rel="stylesheet" href="/css/footer_style.css">
+        <script src = "/js/burger.js" defer></script>
+        <script src = "/js/counter.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <a href="/home">
+                <img class = "header_logo" src="/images/icons/logo512.png" alt="Логотип" title="Логотип" width = "64" height="64">
+            </a>
+            <label class="header_name">House plants</label>
+
+            <ul class = "header_links">
+                <li ><a href="/home" >Главная</a></li>
+                <li ><a href="/authentication" >Войти</a></li>
+                <li ><a href="/catalog">Каталог</a></li>
+                <li ><a class = "current" href="/order_creation">Сделать заказ</a></li>
+                <li ><a href="/account">Личный кабинет</a></li>
+                <li ><a href="/plant_care">О растениях</a></li>
+                <li ><a href="/about_us">О нас</a></li>
+                <li ><a id="user_name"th:text="${username}"></a></li>
+            </ul>
+            <div class = "burger-background"></div>
+            <div class = "navbar">
+                
+                    <div class = "burger-menu">
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                        <div class="line line-3"></div>
+                    </div> 
+
+
+            <ul class = "nav-list">
+                <div class = "space_for_x"></div>
+                <li id="burger_user_name"><p th:text="${username}"></p></li>
+                <li class="nav-item"><a href="/home" class = "nav-link">Главная</a></li>
+                <li class="nav-item"><a href="/authentication" class = "nav-link">Войти</a></li>
+                <li class="nav-item"><a href="/catalog" class = "nav-link">Каталог</a></li>
+                <li class="nav-item"><a href="/order_creation" class = "nav-link">Сделать заказ</a></li>
+                <li class="nav-item"><a href="/account" class = "nav-link">Личный кабинет</a></li>
+                <li class="nav-item"><a href="/plant_care" class = "nav-link">О растениях</a></li>
+                <li class="nav-item"><a href="/about_us" class = "nav-link">О нас</a></li>
+            </ul>
+
+            </div>
+
+
+        
+        </header>
+        <main>
+            <div th:if="${param.message}" id="successful_order">
+                <p>Заказ успешно создан</p>
+            </div>
+            <div th:if="${param.error}" id="server_error" >
+                <p th:text="${er}"></p>
+            </div>
+            <div class = "container">
+                <p class="bin_title">Выберите растения</p>
+                <form id="sort_form" action="/order_creation" method="get">
+                    <button id="sort_btn1" type="submit" name="sort_type" value="name">По алфавиту</button>
+                    <button id="sort_btn2" type="submit" name="sort_type" value="ascend">По возрастанию цены</button>
+                    <button id="sort_btn3" type="submit" name="sort_type" value="descend">По убыванию цены</button>
+                </form>
+                <div class ="cart">
+                    <div  class="products">
+                        <!-- <div th:insert="~{plant :: plant}"></div> -->
+                        <div th:each="pos : ${positions}" class="product">
+                            <div class="img_wrapper">
+                                <img th:src="@{'/images/positions/' + ${pos.name} + '.jpg'}" alt="">
+                            </div>
+                            <div class="product_info">
+                                <p th:text="${pos.name}" class="product_name"></p>
+                                <p th:text="'Цена: ' + ${pos.price} + '₽'" class="product_price"></p>
+                                <div class="counter" quantity_counter>
+                                    <div class="counter_button minus_button">
+                                        <img src="/images/icons/minus.png" alt="" width="12">
+                                    </div>
+                                    <div class="counter_input">
+                                        <input type="text" disabled value="0">
+                                    </div>
+                                    <div class="counter_button plus_button">
+                                        <img src="/images/icons/plus.png" alt="" width="12">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="empty_error">
+                        <p>Вы ничего не выбрали</p>
+                    </div>
+
+                    <form id="frm" class = "cart_total" action="/save_order" method="post">
+                        <div class="order_sum">
+                            <div>
+                                <p class="sum_title">Итого:</p>
+                            </div>
+                            <div class="sum">
+                                <input type="text" name = "amount" disable value="0₽"> <!-- на сервер -->
+                            </div>
+                        </div>
+                        <div class="number_of_products">
+                            <div>
+                                <p class="number_title">Количество:</p>
+                            </div>
+                            <div class="number">
+                                <input type="text" disabled value="0 шт.">
+                            </div>
+                        </div>
+                        <input id="hidden_input" class="product_string" type="text" name = "str" readonly> <!-- на сервер -->
+                        <button type="submit" class="order_button">Заказать
+                        </button>
+                    </form>
+
+
+
+
+
+                    <!-- <div class="form-value">
+                        <form class = "reg_form" action="/register" method="post">
+                            <h2 class = "word_registr">Регистрация</h2>
+                            <div class="inputbox">
+                                <img class="mail" src="/images/icons/white_mail.png" alt="" width="23">
+                                <input type="text" name="username" required>
+                                <label for="">Имя</label>
+                            </div>
+                            <div class="inputbox inputbox2">
+                                <img class="lock" src="/images/icons/white_lock_bold.png" alt="" width="27">
+                                <input type="password" name="password" required>
+                                <label for="">Пароль</label>
+                            </div>
+                            <button type="submit">Зарегистрироваться</button>
+                        </form>
+                    </div> -->
+
+
+
+
+
+                </div>
+            </div>
+        </main>
+        <footer class = "footer_wrapper">
+                <div class="box box1">
+                    <u>О нас</u>
+                    <p class="author_name">Автор: Иванов Д.О.,</p>
+                    <p>студент группы ИКБО-30-22</p>
+                </div>
+                <div class="box box2">
+                    <u>Ссылки</u>
+                    <p><a href="/catalog">Растения</a></p>
+                    <p><a href="/plant_care">Советы</a></p>
+                </div>
+        </footer>
+    </body>
+</html>

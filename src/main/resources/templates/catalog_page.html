@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+        <title>House plants</title>
+        <link rel="icon" href="/images/icons/favicon.ico" sizes = "any">
+        <link rel="stylesheet" href="/css/catalog_style.css">
+        <link rel="stylesheet" href="/css/header_style.css">
+        <link rel="stylesheet" href="/css/footer_style.css">
+        <script src = "/js/burger.js" defer></script>
+        <script src = "/js/catalog1.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <a href="/home">
+                <img class = "header_logo" src="/images/icons/logo512.png" alt="Логотип" title="Логотип" width = "64" height="64">
+            </a>
+            <label class="header_name">House plants</label>
+
+            <ul class = "header_links">
+                <li ><a href="/home" >Главная</a></li>
+                <li ><a href="/authentication" >Войти</a></li>
+                <li ><a class = "current" href="/catalog">Каталог</a></li>
+                <li ><a href="/order_creation">Сделать заказ</a></li>
+                <li ><a href="/account">Личный кабинет</a></li>
+                <li ><a href="/plant_care">О растениях</a></li>
+                <li ><a href="/about_us">О нас</a></li>
+                <li ><a id="user_name"th:text="${username}"></a></li>
+            </ul>
+            <div class = "burger-background"></div>
+            <div class = "navbar">
+                
+                    <div class = "burger-menu">
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                        <div class="line line-3"></div>
+                    </div> 
+
+
+            <ul class = "nav-list">
+                <div class = "space_for_x"></div>
+                <li id="burger_user_name"><p th:text="${username}"></p></li>
+                <li class="nav-item"><a href="/home" class = "nav-link">Главная</a></li>
+                <li class="nav-item"><a href="/authentication" class = "nav-link">Войти</a></li>
+                <li class="nav-item"><a href="/catalog" class = "nav-link">Каталог</a></li>
+                <li class="nav-item"><a href="/order_creation" class = "nav-link">Сделать заказ</a></li>
+                <li class="nav-item"><a href="/account" class = "nav-link">Личный кабинет</a></li>
+                <li class="nav-item"><a href="/plant_care" class = "nav-link">О растениях</a></li>
+                <li class="nav-item"><a href="/about_us" class = "nav-link">О нас</a></li>
+            </ul>
+
+            </div>
+
+
+            
+        </header>
+
+
+    <main>
+    <!-- Первый каталог -->
+        <p id = "ficus" class="catalog_name">Фикусы</p>
+        <div class="catalog catalog1">
+  
+            <div class = "wrapper wrapper1">
+                <div id="left1" class = "left-arrow arrows arrows1">
+                    <img  src = "/images/icons/left-arrow.png" width = "20" heiht="20">
+                </div>
+
+                <div class = "carousel carousel1">
+                
+                <!-- Первая карточка-->
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/ficus/ficus_beng.jpg" alt="" class = "card-img" height = "250" draggable = "false" >
+                                <div class = "hidden_title">
+                                    <span class="title">Фикус Бенгальский</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Фикус Бенгальский</p>
+                            <p class="description">Цена: 1200₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+
+                <!-- Вторая карточка-->
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/ficus/Benjamin_square.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Фикус Бенджамина</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Фикус Бенджамина<p>
+                            <p class="description">Цена: 1500₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/ficus/ficus_starlight.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Фикус Старлайт</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Фикус Старлайт</p>
+                            <p class="description">Цена: 1900₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+ 
+                        </div>
+                    </div>
+
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/ficus/ficus_kinky.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Фикус Кинки</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Фикус Кинки</p>
+                            <p class="description">Цена: 1500₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/ficus/ficus_wiandi.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Фикус Вианди</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Фикус Вианди</p>
+                            <p class="description">Цена: 1400₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+                </div>
+                <div id="right1" class="right-arrow arrows arrows1" >
+                    <img  src = "/images/icons/right-arrow.png" width = "20" heiht="20">
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="flowering"></div>
+        <div ></div>
+        <!-- Второй каталог-->
+        <p  class="catalog_name">Цветущие</p>
+        <div class="catalog catalog2">
+
+            <div class = "wrapper wrapper2">
+                <div id="left2" class = "left-arrow arrows arrows2">
+                    <img  src = "/images/icons/left-arrow.png" width = "20" heiht="20">
+                </div>
+
+                <div class = "carousel carousel2">
+                
+                <!-- Первая карточка-->
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/flowering/anthurium.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Антуриум белый</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Антуриум</p>
+                            <p class="description">Цена: 1000₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+
+                <!-- Вторая карточка-->
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/flowering/begonia3.png" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Бегония Элатиор</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Бегония<p>
+                            <p class="description">Цена: 800₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/flowering/geranium.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Герань Пеларгония</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Герань</p>
+                            <p class="description">Цена 400₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/flowering/vilolet_senpolia.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Фиалка Сенполия</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Фиалка</p>
+                            <p class="description">Цена: 400₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/flowering/cyclamen.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Цикламен персидский</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Цикламен</p>
+                            <p class="description">Цена 800₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+                </div>
+                <div id="right2" class="right-arrow arrows arrows2" >
+                    <img  src = "/images/icons/right-arrow.png" width = "20" heiht="20">
+                </div>
+            </div>
+        </div>
+        
+        <p id="succulents" class="catalog_name">Суккуленты</p>
+        <!-- Третий каталог-->
+        <div class="catalog catalog3">
+
+            <div class = "wrapper wrapper3">
+                <div id="left3" class = "left-arrow arrows arrows3">
+                    <img  src = "/images/icons/left-arrow.png" width = "20" heiht="20">
+                </div>
+
+                <div class = "carousel carousel3">
+                
+                <!-- Первая карточка-->
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/succulents/aloe_arborescens.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Алое древовидное</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Алое</p>
+                            <p class="description">Цена: 600₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+
+                <!-- Вторая карточка-->
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/succulents/crassula_ovata.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Крассула Овата</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Крассула<p>
+                            <p class="description">Цена: 800₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/succulents/eheveria.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Эхеверия</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Эхеверия</p>
+                            <p class="description">Цена: 500₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/succulents/ripsalis.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Рипсалис</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Рипсалис</p>
+                            <p class="description">Цена: 500₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class = "card">
+                        <div class = "image-content">
+                            <span class="card-header"></span>
+
+                            <div class="card-image">
+                                <img src="/images/succulents/zamioculcas.jpg" alt="" class = "card-img" draggable = "false">
+                                <div class = "hidden_title">
+                                    <span class="title">Замиокулькас замиелистный</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <p class="name">Замиокулькас</p>
+                            <p class="description">Цена: 700₽</p>
+                            <!-- <button class = "button">В корзину</button> -->
+
+
+                        </div>
+                    </div>
+                </div>
+                <div id="right3" class="right-arrow arrows arrows3" >
+                    <img  src = "/images/icons/right-arrow.png" width = "20" heiht="20">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class = "footer_wrapper">
+            <div class="box box1">
+                <u>О нас</u>
+                <p class="author_name">Автор: Иванов Д.О.,</p>
+                <p>студент группы ИКБО-30-22</p>
+            </div>
+            <div class="box box2">
+                <u>Ссылки</u>
+                <p><a href="/catalog">Растения</a></p>
+                <p><a href="/plant_care">Советы</a></p>
+            </div>
+    </footer>
+    </body>
+
+</html>
