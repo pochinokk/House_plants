@@ -19,7 +19,6 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class OrderService {
-
     private final CustomerRepository customerRepository;
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
@@ -39,6 +38,8 @@ public class OrderService {
                 .build();
         orderRepository.save(order);
     }
+
+
     /**
      * Метод проверки существования заказа
      * @param id ID заказа

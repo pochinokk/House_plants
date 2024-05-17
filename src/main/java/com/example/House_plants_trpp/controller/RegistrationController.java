@@ -50,6 +50,8 @@ public class RegistrationController {
         redirectAttributes.addFlashAttribute("mes", "Вы успешно зарегистрировались");
         return "redirect:/authentication";
     }
+
+
     /**
      * Метод получения страницы регистрации
      * @param model объект Model, содержащий атрибуты для рендеринга представления
